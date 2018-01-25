@@ -1,0 +1,11 @@
+.social-link-container {
+  display: flex;
+  justify-content: center;
+  > span {
+    margin: 0 5px;
+    a {
+      color: #f7d146;
+      height: 100%;
+    }
+  }
+}

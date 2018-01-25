@@ -1,0 +1,28 @@
+.header-container {
+  height: 100px;
+  padding: 0 40px;
+  background-color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .logo {
+    background-image: url('../../../img/winnersdaremore.png');
+    background-repeat: no-repeat;
+    width: 165px;
+    height: 100%;
+    background-size: 165px 53px;
+    background-position: center;
+    padding-left: 20px;
+  }
+  .nav a {
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 15px;
+    &:hover {
+      color: #f7d146;
+    }
+  }
+}
