@@ -1,6 +1,7 @@
 export interface LoginForm {
   email: string;
   password: string;
+  token?: string;
 }
 
 export interface LoginState {
@@ -8,4 +9,13 @@ export interface LoginState {
   userName?: string;
   loading: boolean;
   error?: string;
+  status?: number;
+}
+
+export interface UserState {
+  token?: string;
+  userName?: string;
+  loading: boolean;
+  error?: string;
+  status?: number;
 }

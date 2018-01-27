@@ -1,8 +1,22 @@
 import * as React from 'react';
 import Header from '../header/Header';
+import * as _ from 'lodash';
+import { connect } from 'react-redux';
+import { RootState } from '../../../rootReducer';
+import { Redirect } from 'react-router';
+import { LoginState } from '../../model/loginModel';
 
-class Dashboard extends React.Component {
+interface AppProps {
+  userInfo: LoginState;
+}
+
+class Dashboard extends React.Component<AppProps, Object> {
   render() {
+    const { userInfo } = this.props;
+    const isAuthenticated = !_.isEmpty(userInfo) && userInfo.token;
+    if (!isAuthenticated) {
+      return <Redirect to="/login" />;
+    }
     return (
       <div className="app-container">
         <div>
@@ -16,4 +30,8 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state: RootState) => ({
+  userInfo: state.userInfo,
+});
+
+export default connect(mapStateToProps, null)(Dashboard);

@@ -2,10 +2,14 @@ import {
   USER_LOGIN,
   USER_LOGIN_FAILURE,
   USER_LOGIN_SUCCESS,
+  USER_LOGOUT,
+  USER_LOGOUT_FAILURE,
+  USER_LOGOUT_SUCCESS,
   UserActions,
   UserLogin,
+  UserLogout,
 } from '../actions/userActions';
-import { ActionsObservable } from 'redux-observable';
+import { ActionsObservable, combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
 import { Action, Store } from 'redux';
 import { LoginForm } from '../model/loginModel';
@@ -27,7 +31,20 @@ const mockUserApi = (params: LoginForm) =>
     }
   });
 
-export const userEpic = (
+const mockLogOutApi = (token: string) =>
+  new Promise((resolve, reject) => {
+    if (token) {
+      resolve({
+        status: 200,
+      });
+    } else {
+      reject({
+        message: 'Can not log out!',
+      });
+    }
+  });
+
+const loginEpic = (
   action$: ActionsObservable<UserActions>,
   store: Store<RootState>,
 ): Observable<Action> =>
@@ -50,3 +67,26 @@ export const userEpic = (
           });
         }),
     );
+
+const logOutEpic = (
+  action$: ActionsObservable<UserActions>,
+  store: Store<RootState>,
+): Observable<Action> =>
+  action$
+    .ofType(USER_LOGOUT)
+    .delay(1000)
+    .mergeMap((action: UserLogout) =>
+      Observable.fromPromise(mockLogOutApi(action.token))
+        .map(res => ({ type: USER_LOGOUT_SUCCESS, response: res }))
+        .do(() => {
+          store.dispatch(push('/login'));
+        })
+        .catch(err => {
+          return Observable.of({
+            type: USER_LOGOUT_FAILURE,
+            error: err.message,
+          });
+        }),
+    );
+
+export default combineEpics(logOutEpic, loginEpic);

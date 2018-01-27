@@ -13,6 +13,8 @@ import Header from '../../../client/components/header/Header';
 import { connect, Dispatch } from 'react-redux';
 import { RootState } from '../../../rootReducer';
 import * as userActions from '../../actions/userActions';
+import { Redirect } from 'react-router';
+import * as _ from 'lodash';
 
 interface Props extends InjectedFormProps {
   handleSubmit: SubmitHandler;
@@ -29,8 +31,11 @@ class Login extends React.Component<Props, Object> {
   };
 
   render() {
-    const { handleSubmit, submitting, pristine, error } = this.props;
-    console.log(error);
+    const { handleSubmit, submitting, pristine, error, userInfo } = this.props;
+    const isAuthenticated = !_.isEmpty(userInfo) && userInfo.token;
+    if (isAuthenticated) {
+      return <Redirect to="/admin" />;
+    }
     return (
       <div className="login-container">
         <Header />
