@@ -11,6 +11,12 @@ interface Props {
   type: string;
   meta: WrappedFieldMetaProps;
 }
+
+const style = {
+  color: '#fff',
+  fontSize: 14
+};
+
 const InputField = ({
   input,
   label,
@@ -19,7 +25,7 @@ const InputField = ({
   meta: { touched, error },
 }: Props) => (
   <div>
-    <label>{label}</label>
+    <label style={style}>{label}</label>
     <div>
       <input
         {...input}

@@ -9,6 +9,7 @@ import {
 import InputField from '../../components/InputField';
 import { LoginForm } from '../../model/loginModel';
 import './login.scss';
+import Header from '../../../client/components/header/Header';
 
 interface Props extends InjectedFormProps {
   handleSubmit: SubmitHandler;
@@ -25,29 +26,32 @@ class Login extends React.Component<Props, Object> {
     const { handleSubmit } = this.props;
     return (
       <div className="login-container">
-        <div>
-          <h3>Login</h3>
-          <form onSubmit={handleSubmit(this.onLoginSubmit)}>
-            <div className="form-group">
-              <Field
-                name="email"
-                component={InputField}
-                type="text"
-                label="Email"
-              />
-            </div>
-            <div className="form-group">
-              <Field
-                name="password"
-                component={InputField}
-                type="password"
-                label="Password"
-              />
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </form>
+        <Header />
+        <div className="login-form-container">
+          <div>
+            <span className="login-header">Login</span>
+            <form onSubmit={handleSubmit(this.onLoginSubmit)} className="login-form">
+              <div className="form-group">
+                <Field
+                  name="email"
+                  component={InputField}
+                  type="text"
+                  label="Email"
+                />
+              </div>
+              <div className="form-group">
+                <Field
+                  name="password"
+                  component={InputField}
+                  type="password"
+                  label="Password"
+                />
+              </div>
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     );
