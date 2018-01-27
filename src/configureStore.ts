@@ -18,7 +18,7 @@ function configureStoreProd() {
     loadState(),
     compose(applyMiddleware(...middlewares)),
   );
-  store.subscribe(_.throttle(() => saveState(store.getState()), 1000));
+  store.subscribe(_.throttle(() => saveState(store.getState().counter), 1000));
 
   return store;
 }
@@ -31,7 +31,7 @@ function configureStoreDev() {
     loadState(),
     composeWithDevTools(applyMiddleware(...middlewares)),
   );
-  store.subscribe(_.throttle(() => saveState(store.getState()), 1000));
+  store.subscribe(_.throttle(() => saveState(store.getState().counter), 1000));
 
   if (module.hot) {
     module.hot.accept('./rootReducer', () => {
