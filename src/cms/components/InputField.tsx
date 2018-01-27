@@ -8,34 +8,35 @@ interface Props {
   input: WrappedFieldInputProps;
   label: string;
   placeholder: string;
+  disabled: boolean;
   type: string;
   meta: WrappedFieldMetaProps;
 }
 
 const style = {
   color: '#fff',
-  fontSize: 14
+  fontSize: 14,
 };
 
 const InputField = ({
   input,
   label,
   placeholder,
+  disabled,
   type,
   meta: { touched, error },
 }: Props) => (
   <div>
     <label style={style}>{label}</label>
-    <div>
-      <input
-        {...input}
-        type={type}
-        className={`form-control ${
-          touched && error ? 'border border-danger' : ''
-        }`}
-      />
-      {touched && error && <span className="text-danger">{error}</span>}
-    </div>
+    <input
+      {...input}
+      type={type}
+      disabled={disabled}
+      className={`form-control ${
+        touched && error ? 'border border-danger' : ''
+      }`}
+    />
+    {touched && error && <span className="text-danger">{error}</span>}
   </div>
 );
 

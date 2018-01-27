@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
-import { CounterState } from './client/model/counterModel';
-import counterReducer from './client/reducer/counterReducer';
+import loginReducer from './cms/reducers/loginReducer';
 import { reducer as formReducer } from 'redux-form';
+import { LoginState } from './cms/model/loginModel';
 
 export interface RootState {
-  counter: CounterState;
+  userInfo: LoginState;
 }
 
 export default combineReducers<RootState>({
-  counter: counterReducer,
+  userInfo: loginReducer,
   form: formReducer,
 });
