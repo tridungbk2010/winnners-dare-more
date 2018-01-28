@@ -79,7 +79,7 @@ const logOutEpic = (
       Observable.fromPromise(mockLogOutApi(action.token))
         .map(res => ({ type: USER_LOGOUT_SUCCESS, response: res }))
         .do(() => {
-          store.dispatch(push('/user'));
+          store.dispatch(push('/login'));
         })
         .catch(err => {
           return Observable.of({
