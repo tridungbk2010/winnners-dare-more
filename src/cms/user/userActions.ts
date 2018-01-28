@@ -1,4 +1,4 @@
-import { LoginForm, LoginState, UserState } from '../model/loginModel';
+import { LoginForm, LoginState, UserState } from './userModel';
 
 export const USER_LOGIN = 'user_login';
 export type USER_LOGIN = typeof USER_LOGIN;

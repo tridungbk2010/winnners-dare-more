@@ -1,4 +1,4 @@
-import { LoginState } from '../model/loginModel';
+import { LoginState } from './userModel';
 import {
   USER_LOGIN,
   USER_LOGIN_FAILURE,
@@ -7,7 +7,7 @@ import {
   USER_LOGOUT_FAILURE,
   USER_LOGOUT_SUCCESS,
   UserActions,
-} from '../actions/userActions';
+} from './userActions';
 
 const initialState: LoginState = {
   userName: '',

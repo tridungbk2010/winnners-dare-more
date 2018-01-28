@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect, Dispatch } from 'react-redux';
-import * as actions from '../../actions/userActions';
+import * as actions from '../userActions';
 
 interface LogOutProps {
   logOut: (token: string) => void;

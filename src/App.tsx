@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Client from './client/containers/home/Home';
 import { Switch, Route } from 'react-router-dom';
-import Login from './cms/containers/login/Login';
-import Dashboard from './cms/containers/main/Dashboard';
+import Login from './cms/user/containers/Login';
+import Dashboard from './cms/dashboard/Dashboard';
 import { RouteComponentProps } from 'react-router-dom';
 
 const NotFound = () => <h3>Not found</h3>;

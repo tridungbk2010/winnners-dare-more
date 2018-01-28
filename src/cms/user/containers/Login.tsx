@@ -6,15 +6,15 @@ import {
   reduxForm,
   SubmitHandler,
 } from 'redux-form';
-import InputField from '../../components/InputField';
-import { LoginForm, LoginState } from '../../model/loginModel';
+import InputField from '../../common/InputField';
+import { LoginForm, LoginState } from '../userModel';
 import './login.scss';
-import Header from '../../../client/components/header/Header';
 import { connect, Dispatch } from 'react-redux';
-import { RootState } from '../../../rootReducer';
-import * as userActions from '../../actions/userActions';
+import * as userActions from '../userActions';
 import { Redirect } from 'react-router';
 import * as _ from 'lodash';
+import { RootState } from '../../../rootReducer';
+import Header from '../../../client/components/header/Header';
 
 interface Props extends InjectedFormProps {
   handleSubmit: SubmitHandler;

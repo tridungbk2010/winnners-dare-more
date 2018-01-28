@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LogOutBtn from '../log-out/LogOut';
+import LogOutBtn from '../user/containers/LogOut';
 
 class Header extends React.Component {
   render() {

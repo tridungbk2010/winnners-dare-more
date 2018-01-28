@@ -8,11 +8,11 @@ import {
   UserActions,
   UserLogin,
   UserLogout,
-} from '../actions/userActions';
+} from './userActions';
 import { ActionsObservable, combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
 import { Action, Store } from 'redux';
-import { LoginForm } from '../model/loginModel';
+import { LoginForm } from './userModel';
 const uuidv4 = require('uuid/v4');
 import { push } from 'react-router-redux';
 import { startSubmit, stopSubmit } from 'redux-form';
@@ -79,7 +79,7 @@ const logOutEpic = (
       Observable.fromPromise(mockLogOutApi(action.token))
         .map(res => ({ type: USER_LOGOUT_SUCCESS, response: res }))
         .do(() => {
-          store.dispatch(push('/login'));
+          store.dispatch(push('/user'));
         })
         .catch(err => {
           return Observable.of({
