@@ -1,7 +1,38 @@
 .video-list-container {
   font-family: 'FuturaMedium', sans-serif;
+  height: 100%;
+  padding: 20px;
+  .loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
   .h3-all-video {
     font-size: 24px;
     color: #fff;
+  }
+  .video-list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    .video-item {
+      margin-right: 50px;
+      margin-bottom: 20px;
+      width: 220px;
+      min-height: 250px;
+      .img{
+        width: 100%;
+        height: auto;
+      }
+      .video-title {
+        font-size: 16px;
+        color: #fff;
+      }
+      .video-desc{
+        font-size: 12px;
+        color: #fff;
+      }
+    }
   }
 }
