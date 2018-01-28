@@ -1,0 +1,31 @@
+@import '../../style/colors';
+.admin-side-bar {
+  ul {
+    padding-left: 20px;
+    padding-top: 10px;
+    li {
+      list-style: none;
+      padding: 10px 0;
+      color: $WDM_WHITE;
+      &:hover{
+        color: $WDM_ORANGE;
+        cursor: pointer;
+      }
+      &.active {
+        color: $WDM_ORANGE;
+        >a{
+          color: $WDM_ORANGE;
+        }
+      }
+      > a {
+        &:hover{
+          color: $WDM_ORANGE;
+        }
+        padding-left: 10px;
+        font-family: 'FuturaMedium', sans-serif;
+        color: $WDM_WHITE;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -1,27 +1,45 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
+import './Sidebar.scss';
 
-class Sidebar extends React.Component {
+interface Route {
+  route: string;
+  name: string;
+  icon?: string;
+}
+const routes: Route[] = [
+  { route: '/admin', name: 'All Videos', icon: 'fa-play-circle' },
+  { route: '/admin/approved', name: 'Approved Video', icon: 'fa-check' },
+  { route: '/admin/drafts', name: 'Drafts', icon: 'fa-edit' },
+  { route: '/admin/declined', name: 'Declined Videos', icon: 'fa-trash-alt' },
+];
+
+interface State {
+  index: number;
+}
+class Sidebar extends React.Component<Object, State> {
+  state = {
+    index: 0,
+  };
+
+  activeMenu = (index: number): void => {
+    this.setState({ index });
+  };
+
   render() {
-    const activeStyle = { color: 'blue' };
     return (
-      <div className="admin-side-bar">
+      <div className={`admin-side-bar`}>
         <ul>
-          <li>
-            <NavLink to="/" activeStyle={activeStyle}>
-              Main
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/about" activeStyle={activeStyle}>
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/video" activeStyle={activeStyle}>
-              Video
-            </NavLink>
-          </li>
+          {routes.map((route: Route, i: number) => (
+            <li
+              key={i}
+              onClick={this.activeMenu.bind(this, i)}
+              className={this.state.index === i ? 'active' : ''}
+            >
+              <i className={`fas ${route.icon}`} />
+              <NavLink to={route.route}>{route.name}</NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     );

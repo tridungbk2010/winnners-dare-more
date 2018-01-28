@@ -1,3 +1,5 @@
+@import '../../../style/colors';
+
 .login-container {
   .login-form-container {
     display: flex;
@@ -17,11 +19,22 @@
         display: block;
         color: #fff;
       }
-      .login-form{
-        .wdm-btn-login{
+      .login-form {
+        .wdm-btn-login {
           margin-top: 20px;
         }
       }
     }
+  }
+}
+.log-out-btn {
+  color: #fff;
+  font-family: 'FuturaMedium', sans-serif;
+  cursor: pointer;
+  &:hover {
+    color: $WDM_ORANGE;
+  }
+  .icon-logout {
+    margin-left: 10px;
   }
 }

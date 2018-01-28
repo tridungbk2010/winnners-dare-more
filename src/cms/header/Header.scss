@@ -1,0 +1,30 @@
+@import "../../style/colors";
+
+.nav-bar{
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0,0,0,0.2);
+  padding: 0 20px;
+  font-family: "FuturaMedium", sans-serif;
+  .icon{
+    color:#fff;
+    &:hover{
+      color: $WDM_ORANGE;
+      cursor: pointer;
+    }
+    >i{
+      font-size: 20px;
+    }
+  }
+  .logo{
+    background-image: url('../../img/winnersdaremore.png');
+    background-repeat: no-repeat;
+    width: 165px;
+    height: 100%;
+    background-size: 165px 53px;
+    background-position: center;
+    padding-left: 20px;
+  }
+}

@@ -1,14 +1,29 @@
-.app-container{
+@import "../../style/colors";
+.dashboard-container {
+  background: url('../../img/bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   height: 100vh;
   width: 100%;
-  background-color: #f0f0f0;
-  .main{
-    background-color: #fff;
-    width: 1000px;
-    margin: 0 auto;
-    height: 90vh;
+  .sidebar-container {
+    background-color: rgba(0,0,0,.6);
+    width: 0;
+    transform: translateX(-200px) scaleX(0.4);
+    transition: all 350ms ease-in-out;
+    transform-origin: left;
+    height: 100vh;
+    &.show-menu {
+      width: 220px;
+      transform: translateX(0) scaleX(1);
+      transition: all 350ms ease-in-out;
+    }
+  }
+  .main-container {
+    display: flex;
+    .main{
+      padding: 20px;
+      flex-grow: 1;
+    }
   }
 }
