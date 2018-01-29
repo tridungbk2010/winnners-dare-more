@@ -36,8 +36,10 @@ class Sidebar extends React.Component<Object, State> {
               onClick={this.activeMenu.bind(this, i)}
               className={this.state.index === i ? 'active' : ''}
             >
-              <i className={`fas ${route.icon}`} />
-              <NavLink to={route.route}>{route.name}</NavLink>
+              <NavLink to={route.route}>
+                <i className={`fas ${route.icon}`} />
+                <span>{route.name}</span>
+                </NavLink>
             </li>
           ))}
         </ul>

@@ -225,11 +225,31 @@ module.exports = {
           },
           {
             test: /\.scss$/,
-            loaders: [
-              require.resolve('style-loader'),
-              require.resolve('css-loader'),
-              require.resolve('sass-loader')
-            ]
+            use: ExtractTextPlugin.extract({
+              use: [
+                {
+                  loader: 'css-loader',
+                  options: {
+                    minimize: true,
+                    sourceMap: true
+                  }
+                }, {
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: () => [
+                      require('autoprefixer')
+                    ],
+                    sourceMap: true
+                  }
+                }, {
+                  loader: 'sass-loader',
+                  options: {
+                    includePaths: [path.resolve(__dirname, 'src', 'scss')],
+                    sourceMap: true
+                  }
+                }
+              ]
+            })
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.

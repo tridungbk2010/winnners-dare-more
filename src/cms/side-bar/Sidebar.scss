@@ -21,10 +21,12 @@
         &:hover{
           color: $WDM_ORANGE;
         }
-        padding-left: 10px;
         font-family: 'FuturaMedium', sans-serif;
         color: $WDM_WHITE;
         text-decoration: none;
+        >span{
+          padding-left: 10px;
+        }
       }
     }
   }
