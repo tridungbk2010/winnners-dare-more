@@ -1,22 +1,39 @@
 import { routerMiddleware } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
-import { applyMiddleware, compose, createStore } from 'redux';
+import {
+  applyMiddleware,
+  compose,
+  createStore,
+  GenericStoreEnhancer,
+} from 'redux';
 import rootReducer from './rootReducer';
 export const history = createHistory();
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { createEpicMiddleware } from 'redux-observable';
 import rootEpic from './rootEpic';
 const epicMiddleware = createEpicMiddleware(rootEpic);
 import { loadState, saveState } from './local-storage/localStorage';
 import * as _ from 'lodash';
 
-function configureStoreProd() {
+const ReduxExtentionComposeName: string =
+  '__REDUX_DEVTOOLS_EXTENSION_COMPOSE__';
+
+export default function configureStore() {
   const reactRouterMiddleware = routerMiddleware(history);
   const middlewares = [epicMiddleware, reactRouterMiddleware];
+
+  const enhancers: GenericStoreEnhancer[] = [applyMiddleware(...middlewares)];
+
+  const composeEnhancers =
+    process.env.NODE_ENV !== 'production' &&
+    typeof window === 'object' &&
+    window[ReduxExtentionComposeName]
+      ? window[ReduxExtentionComposeName]
+      : compose;
+
   const store = createStore(
     rootReducer,
     loadState(),
-    compose(applyMiddleware(...middlewares)),
+    composeEnhancers(...enhancers),
   );
   store.subscribe(
     _.throttle(
@@ -28,28 +45,7 @@ function configureStoreProd() {
     ),
   );
 
-  return store;
-}
-
-function configureStoreDev() {
-  const reactRouterMiddleware = routerMiddleware(history);
-  const middlewares = [epicMiddleware, reactRouterMiddleware];
-  const store = createStore(
-    rootReducer,
-    loadState(),
-    composeWithDevTools(applyMiddleware(...middlewares)),
-  );
-  store.subscribe(
-    _.throttle(
-      () =>
-        saveState({
-          userInfo: store.getState().userInfo,
-        }),
-      1000,
-    ),
-  );
-
-  if (module.hot) {
+  if (module.hot && process.env.NODE_ENV !== 'production') {
     module.hot.accept('./rootReducer', () => {
       const nextReducer = require('./rootReducer').default; // eslint-disable-line global-require
       store.replaceReducer(nextReducer);
@@ -58,10 +54,3 @@ function configureStoreDev() {
 
   return store;
 }
-
-const configureStore =
-  process.env.NODE_ENV === 'production'
-    ? configureStoreProd
-    : configureStoreDev;
-
-export default configureStore;
