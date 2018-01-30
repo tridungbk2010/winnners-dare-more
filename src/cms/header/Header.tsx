@@ -1,6 +1,7 @@
 import * as React from 'react';
 import LogOutBtn from '../user/containers/Logout';
 import './Header.scss';
+import { Icon } from 'antd';
 
 interface Props {
   onClick?: () => void;
@@ -11,10 +12,11 @@ const Header = ({ onClick, isVisible }: Props) => {
     <nav className="nav-bar">
       <div className="icon" onClick={onClick}>
         {isVisible ? (
-          <i className="fas fa-arrow-left" />
+          <Icon type="menu-fold" style={{ fontSize: 16 }} />
         ) : (
-          <i className="fa fa-bars" />
-        )} Menu
+          <Icon type="menu-unfold" style={{ fontSize: 16 }} />
+        )}{' '}
+        Menu
       </div>
       <div className="logo" />
       <div className="form-inline">

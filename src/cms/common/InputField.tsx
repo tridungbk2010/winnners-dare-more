@@ -3,7 +3,7 @@ import {
   WrappedFieldInputProps,
   WrappedFieldMetaProps,
 } from 'redux-form/lib/Field';
-
+import '../../../node_modules/bootstrap/dist/css/bootstrap.css';
 interface Props {
   input: WrappedFieldInputProps;
   label: string;

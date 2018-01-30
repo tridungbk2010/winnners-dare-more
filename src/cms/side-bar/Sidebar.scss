@@ -5,8 +5,6 @@
     padding-top: 10px;
     li {
       list-style: none;
-      padding: 10px 0;
-      color: $WDM_WHITE;
       &:hover{
         color: $WDM_ORANGE;
         cursor: pointer;
@@ -21,6 +19,9 @@
         &:hover{
           color: $WDM_ORANGE;
         }
+        display: block;
+        height: 100%;
+        padding: 10px 0;
         font-family: 'FuturaMedium', sans-serif;
         color: $WDM_WHITE;
         text-decoration: none;

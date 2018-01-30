@@ -3,52 +3,38 @@ import './Video.scss';
 import { connect, Dispatch } from 'react-redux';
 import { RootState } from '../../../rootReducer';
 import * as videoActions from '../actions';
-import { VideoState } from '../model';
-// import Loader from '../../common/Loader';
+import { VideoModel, VideoState } from '../model';
+import VideoItem from './VideoDetail';
+import { Spin } from 'antd';
 
 interface Props {
   getVideos: (token: string) => videoActions.Actions;
-  video: VideoState;
+  videoState: VideoState;
+  showVideo: (video: VideoModel) => void;
 }
 class VideosList extends React.Component<Props, Object> {
   componentDidMount(): void {
     this.props.getVideos('token');
   }
   render() {
+    const { videoState } = this.props;
     return (
       <div className="video-list-container">
         <h3 className="h3-all-video">All Videos</h3>
-        {this.props.video.loading ? (
-          <div className="loader">
-            <span>
-              <i className="fas fa-spinner fa-spin fa-2x"/>
-            </span>
-          </div>
-        ) : (
+        <Spin spinning={videoState.loading} size="large">
           <div className="video-list">
-            {this.props.video.videos.map(video => (
-              <div key={video.id} className="video-item">
-                <iframe
-                  width="240"
-                  height="134"
-                  src={`https://www.youtube.com/embed/${
-                    video.url
-                  }?rel=0&amp;controls=0&amp;showinfo=0`}
-                  frameBorder="0"
-                />
-                <h5 className="video-title">{video.title}</h5>
-                <p className="video-desc">{video.description}</p>
-              </div>
+            {videoState.videos.map(video => (
+              <VideoItem video={video} key={video.id} onClick={this.props.showVideo.bind(this, video)}/>
             ))}
           </div>
-        )}
+        </Spin>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state: RootState) => ({
-  video: state.video,
+  videoState: state.video,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<videoActions.Actions>) => ({

@@ -1,5 +1,5 @@
 const uuidv4 = require('uuid/v4');
-export const VideosListFake: Video[] = [
+export const VideosListFake: VideoModel[] = [
   {
     id: uuidv4(),
     url: 'L0MK7qz13bU',
@@ -24,7 +24,8 @@ export const VideosListFake: Video[] = [
   {
     id: uuidv4(),
     url: 'NliYy7iqh-U',
-    description: 'Amazing mix, I\'ve listened to this at least 100 times in the last few months.',
+    description:
+      'Amazing mix, Ive listened to this at least 100 times in the last few months.',
     title: 'Aulii Cravalho - How Far I will Go',
     status: 'Publish',
   },
@@ -45,19 +46,20 @@ export const VideosListFake: Video[] = [
   {
     id: uuidv4(),
     url: '5i09cAYfApQ',
-    description: 'You can now listen to all my songs on my very own J.Fla official playlist,',
+    description:
+      'You can now listen to all my songs on my very own J.Fla official playlist,',
     title: 'Maroon 5 - What Lovers Do ( cover by J.Fla )',
     status: 'Publish',
   },
 ];
 
 export interface VideoState {
-  videos: Video[];
+  videos: VideoModel[];
   loading: boolean;
   error?: string;
 }
 
-export interface Video {
+export interface VideoModel {
   id: string;
   url: string;
   title: string;

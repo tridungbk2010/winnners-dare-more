@@ -15,6 +15,7 @@ import { Redirect } from 'react-router';
 import * as _ from 'lodash';
 import { RootState } from '../../../rootReducer';
 import Header from '../../../client/components/header/Header';
+import { Spin, Icon } from 'antd';
 
 interface Props extends InjectedFormProps {
   handleSubmit: SubmitHandler;
@@ -36,6 +37,13 @@ class Login extends React.Component<Props, Object> {
     if (isAuthenticated) {
       return <Redirect to="/admin" />;
     }
+    const antIcon = (
+      <Icon
+        type="loading"
+        style={{ fontSize: 24, color: '#fff' }}
+        spin={true}
+      />
+    );
     return (
       <div className="login-container">
         <Header />
@@ -71,7 +79,7 @@ class Login extends React.Component<Props, Object> {
                   disabled={pristine || submitting}
                 >
                   {submitting ? (
-                    <i className="fa fa-spinner fa-spin fa-fw" />
+                    <Spin size="small" indicator={antIcon} />
                   ) : (
                     'Login'
                   )}

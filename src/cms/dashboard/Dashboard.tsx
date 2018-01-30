@@ -7,7 +7,7 @@ import { LoginState } from '../user/userModel';
 import './Dashboard.scss';
 import { Route } from 'react-router-dom';
 import Sidebar from '../side-bar/Sidebar';
-import VideosList from '../video/containers/VideosList';
+import Video from '../video/containers/Video';
 import Header from '../header/Header';
 
 interface AppProps {
@@ -46,7 +46,7 @@ class Dashboard extends React.Component<AppProps, State> {
             <Sidebar />
           </div>
           <div className="main">
-            <Route exact={true} path={'/admin'} component={VideosList} />
+            <Route exact={true} path={'/admin'} component={Video} />
             <Route
               path={'/admin/approved'}
               component={() => <h3>Approved</h3>}
