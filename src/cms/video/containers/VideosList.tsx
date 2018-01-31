@@ -5,7 +5,7 @@ import { RootState } from '../../../rootReducer';
 import * as videoActions from '../actions';
 import { VideoModel, VideoState } from '../model';
 import VideoItem from './VideoDetail';
-import { Spin } from 'antd';
+import { Spin, Row } from 'antd';
 
 interface Props {
   getVideos: (token: string) => videoActions.Actions;
@@ -22,11 +22,11 @@ class VideosList extends React.Component<Props, Object> {
       <div className="video-list-container">
         <h3 className="h3-all-video">All Videos</h3>
         <Spin spinning={videoState.loading} size="large">
-          <div className="video-list">
+          <Row type={'flex'}>
             {videoState.videos.map(video => (
               <VideoItem video={video} key={video.id} onClick={this.props.showVideo.bind(this, video)}/>
             ))}
-          </div>
+          </Row>
         </Spin>
       </div>
     );
